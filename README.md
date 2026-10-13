@@ -1,7 +1,8 @@
 # PhanMemHuongDoiTuong
 
-Kho lưu trữ học phần **Phát triển phần mềm hướng đối tượng (IN4211)** — Khoa Công nghệ và Kỹ thuật, Trường Đại học Đồng Tháp.
-
+Kho lưu trữ học phần **Phát triển phần mềm hướng đối tượng (IN4211)** 
+**SV: Đoàn Minh Trí**
+**MSSV: 00244417136**
 ---
 
 ## 📂 Cấu trúc thư mục học phần
