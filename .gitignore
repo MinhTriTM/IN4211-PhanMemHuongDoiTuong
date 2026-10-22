@@ -1,18 +1,30 @@
-# Python cache & build files
-__pycache__/
+# Python files and directories
+*.py
 *.py[cod]
 *$py.class
 *.pyc
+__pycache__/
+EduHub_Python/
 
 # Microsoft Office temporary lock files
 ~$*
 *.tmp
+tmp/
 
-# Visual Studio / .NET
+# Visual Studio / .NET / IDE
 .vs/
 bin/
 obj/
 *.user
+.idea/
+.vscode/
+
+# OS & Junk files
+.DS_Store
+__MACOSX/
+
+# Archives
+ThucHanh/_archives/
 
 # File và script nội bộ không đưa lên Git
 CHUYEN_DOI_BAOTANG_SANG_IN4211.md
