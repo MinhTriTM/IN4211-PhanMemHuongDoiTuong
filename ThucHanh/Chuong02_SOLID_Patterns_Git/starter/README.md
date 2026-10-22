@@ -1,23 +1,17 @@
-# Starter Ch02 — Refactoring EduHub với SOLID và Design Patterns
+# Chương 02 — SOLID, Design Patterns và Git
 
-Điểm xuất phát của bài tập Ch02 (xem `de-bai.html` và `rubric.html`). Dự án build được ngay, nhưng `ClubManager` cố tình vi phạm SOLID.
+Starter này giữ `Ch02.Refactor/ClubManager.cs` làm baseline God class để phân tích. `Ch02.Refactor/Program.cs` là composition root của bản refactor; nó minh họa Factory, Decorator, Strategy và Observer với repository in-memory.
 
-## Việc cần làm
+Từ thư mục này, chạy:
 
-Các đoạn `// TODO` nằm ở:
-
-- `Ch02.Refactor/ClubManager.cs`: danh sách TODO 1 đến 5 ở đầu file, TODO Factory/Observer/Strategy/Decorator ngay tại method liên quan.
-- `Ch02.Refactor/Domain/Club.cs`, `Domain/Event.cs`: hoàn thiện `Create`, `HasRoom`, `Register`, `CheckIn`.
-- `Ch02.Refactor.Tests/DomainTests.cs`: bỏ `Skip` và viết thân test theo mẫu Arrange-Act-Assert.
-
-## Lệnh
-
-```bash
-dotnet build Ch02.Refactor.sln
-dotnet test Ch02.Refactor.sln
-dotnet run --project Ch02.Refactor
+```powershell
+dotnet build Ch02.Refactor.sln --no-restore
+dotnet test Ch02.Refactor.sln --no-restore --no-build
+dotnet run --project Ch02.Refactor/Ch02.Refactor.csproj --no-build
 ```
 
-## Nộp bài
+Kết quả thực thi đã ghi tại [docs/ket-qua-chay.txt](docs/ket-qua-chay.txt); phân tích SOLID ở [docs/solid-analysis.md](docs/solid-analysis.md).
 
-Làm trên nhánh `feature/solid-refactor`, commit theo Conventional Commits, rebase lên `main` rồi mở Pull Request (mô tả: what, why, how to test).
+## Quy trình Git & Pull Request
+
+Bài tập được thực hiện trên nhánh `feature/solid-refactor` theo chuẩn Conventional Commits, rebase lên `origin/main` và mở Pull Request kèm các nhận xét review đánh giá chất lượng mã nguồn.
