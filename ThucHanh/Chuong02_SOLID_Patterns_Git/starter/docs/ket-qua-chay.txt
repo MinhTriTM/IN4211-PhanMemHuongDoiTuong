@@ -1,0 +1,48 @@
+Thời điểm chạy: 2026-10-21
+Thư mục chạy: ThucHanh/Chuong02_SOLID_Patterns_Git/starter
+
+Lệnh 1:
+dotnet build Ch02.Refactor.sln --no-restore
+
+Kết quả:
+  Ch02.Refactor -> D:\Download\PhanMemHuongDoiTuong\ThucHanh\Chuong02_SOLID_Patterns_Git\starter\Ch02.Refactor\bin\Debug\net10.0\Ch02.Refactor.dll
+  Ch02.Refactor.Tests -> D:\Download\PhanMemHuongDoiTuong\ThucHanh\Chuong02_SOLID_Patterns_Git\starter\Ch02.Refactor.Tests\bin\Debug\net10.0\Ch02.Refactor.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Lệnh 2 (chạy sau build):
+dotnet test Ch02.Refactor.sln --no-restore --no-build
+
+Kết quả:
+Test run for D:\Download\PhanMemHuongDoiTuong\ThucHanh\Chuong02_SOLID_Patterns_Git\starter\Ch02.Refactor.Tests\bin\Debug\net10.0\Ch02.Refactor.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     8, Skipped:     0, Total:     8, Duration: 36 ms - Ch02.Refactor.Tests.dll (net10.0)
+
+Lệnh 3:
+dotnet run --project Ch02.Refactor\Ch02.Refactor.csproj --no-build
+
+Kết quả:
+EduHub Ch02 — demo sau refactor SOLID và Design Patterns
+
+  [LOG] [repo] Add club 'Tech, "Makers" Club'
+  [LOG] Club created: Tech, "Makers" Club
+  [EMAIL] to president@dthu.edu.vn: Club 'Tech, "Makers" Club' has been created
+  [LOG] [repo] GetById b221a253-c63b-4e62-9e44-798a9cc10cb7
+  [LOG] Member Nguyễn Văn A joined Tech, "Makers" Club
+  [EMAIL] to a@student.dthu.edu.vn: Welcome to Tech, "Makers" Club!
+  [LOG] [repo] GetById b221a253-c63b-4e62-9e44-798a9cc10cb7
+  [LOG] Event created: 'Workshop SOLID' (Tech, "Makers" Club)
+  [EMAIL] to a@student.dthu.edu.vn: New event 'Workshop SOLID' at Tech, "Makers" Club on 20/11/2026
+
+--- Strategy: báo cáo Console ---
+  [LOG] [repo] GetAll clubs
+Club: Tech, "Makers" Club | Members: 1 | Events: 1 | Registered: 1 | Checked-in: 1
+--- Strategy: báo cáo CSV (đã escape tên CLB) ---
+  [LOG] [repo] GetAll clubs
+Club,Members,Events,Registered,CheckedIn
+"Tech, ""Makers"" Club",1,1,1,1
+
+Ghi chú: GUID của CLB được tạo mới mỗi lần chạy; GUID trên là output của lần chạy ghi nhận này.
