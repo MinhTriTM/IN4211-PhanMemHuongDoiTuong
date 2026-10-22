@@ -1,20 +1,39 @@
-using EduHub.Ch02;
+using EduHub.Ch02.Logging;
+using EduHub.Ch02.Notifications;
+using EduHub.Ch02.Patterns.Observers;
+using EduHub.Ch02.Patterns.Strategies;
+using EduHub.Ch02.Repositories;
+using EduHub.Ch02.Services;
 
-// ═══════════════════════════════════════════════════════════════
-//  EduHub Ch02 — Refactoring với SOLID và Design Patterns
-//  ClubManager.cs chứa code vi phạm SOLID (đọc các TODO ở đầu file đó).
-// ═══════════════════════════════════════════════════════════════
+Console.WriteLine("EduHub Ch02 — demo sau refactor SOLID và Design Patterns\n");
 
-// Demo code cũ (vi phạm SOLID) — chạy được nhưng thiết kế rất xấu:
-var manager = new ClubManager();
-manager.CreateClub("Tech Club", "Câu lạc bộ công nghệ", "president@gmail.com");
-manager.AddMemberToClub(manager.GetAllClubs()[0].Id, "Nguyễn Văn A", "a@student.dthu.edu.vn");
-manager.CreateEvent(manager.GetAllClubs()[0].Id, "Workshop SOLID", new DateTime(2026, 11, 20));
-manager.PrintClubReport();
+// Composition root: lớp nghiệp vụ chỉ nhận abstraction qua constructor.
+IAppLogger logger = new ConsoleLogger();
+IClubRepository clubs = new LoggingClubRepository(new InMemoryClubRepository(), logger);
+IMemberRepository members = new InMemoryMemberRepository();
+IEventRepository events = new InMemoryEventRepository();
+INotificationServiceFactory notificationFactory = new NotificationServiceFactory();
+INotificationService email = notificationFactory.Create(NotificationChannel.Email);
 
-Console.WriteLine("\n--- TODO: refactor code trên (xem checklist trong de-bai.html) ---");
-Console.WriteLine("1. Phân tích vi phạm SOLID  ->  docs/solid-analysis.md");
-Console.WriteLine("2. Tách ClubManager thành các class nhỏ, phụ thuộc qua interface (SRP, OCP, DIP)");
-Console.WriteLine("3. Áp dụng Factory, Decorator, Strategy, Observer");
-Console.WriteLine("4. Hoàn thiện Domain và viết unit test AAA (dotnet test)");
-Console.WriteLine("5. Nhánh feature/solid-refactor, Conventional Commits, rebase, Pull Request");
+IClubService clubService = new ClubService(clubs, members, email, logger);
+IEventService eventService = new EventService(clubs, members, events);
+IReportService reportService = new ReportService(clubs, members, events);
+
+// Factory chọn kênh; Observer được đăng ký mà không sửa EventService.
+eventService.Subscribe(new LogNotifier(logger));
+eventService.Subscribe(new EmailNotifier(members, email));
+
+var club = clubService.CreateClub(
+    "Tech, \"Makers\" Club",
+    "Câu lạc bộ công nghệ và chế tạo.",
+    "president@dthu.edu.vn");
+var member = clubService.AddMember(club.Id, "Nguyễn Văn A", "a@student.dthu.edu.vn");
+var ev = eventService.CreateEvent(club.Id, "Workshop SOLID", new DateTime(2026, 11, 20));
+eventService.Register(ev.Id, member.Id);
+eventService.CheckIn(ev.Id, member.Id);
+
+Console.WriteLine("\n--- Strategy: báo cáo Console ---");
+Console.Write(reportService.Generate(new ConsoleReportStrategy()));
+
+Console.WriteLine("--- Strategy: báo cáo CSV (đã escape tên CLB) ---");
+Console.Write(reportService.Generate(new CsvReportStrategy()));
