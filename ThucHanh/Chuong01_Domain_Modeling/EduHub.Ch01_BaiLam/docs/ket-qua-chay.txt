@@ -1,0 +1,119 @@
+Kết quả chạy thực tế ngày 21/10/2026, PowerShell tại ThucHanh/Chuong01_Domain_Modeling.
+
+> dotnet build .\EduHub.Ch01_BaiLam\EduHub.Ch01_BaiLam.slnx
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+> dotnet test .\EduHub.Ch01_BaiLam\EduHub.Ch01_BaiLam.slnx --no-build
+Passed!  - Failed:     0, Passed:     5, Skipped:     0, Total:     5, Duration: 30 ms - EduHub.Ch01.Tests.dll (net10.0)
+
+> dotnet run --no-build --project .\EduHub.Ch01_BaiLam\EduHub.Ch01_BaiLam.csproj
+================================================================================
+        CHƯƠNG TRÌNH DEMO NGHIỆP VỤ & DOMAIN MODELING EDUHUB (IN4211)
+                Học phần: Phát triển phần mềm hướng đối tượng
+================================================================================
+
+--- [BƯỚC 1: KHỞI TẠO CÂU LẠC BỘ] ---
+[✓] Khởi tạo CLB thành công: CLB Tin học DThU (Id: 7ff33251-a5b9-4122-adfd-ae2eccf212fe)
+    Mô tả: Câu lạc bộ học thuật & lập trình Khoa CNTT
+
+--- [BƯỚC 2: KHỞI TẠO SINH VIÊN] ---
+[✓] Sinh viên 1: Đoàn Minh Trí | MSSV: 0024417136 | Email: minhtritm@student.dthu.edu.vn
+[✓] Sinh viên 2: Nguyễn Văn An | MSSV: 0024417101 | Email: an.nv@student.dthu.edu.vn
+[✓] Sinh viên 3: Trần Thị Bích | MSSV: 0024417102 | Email: bich.tt@student.dthu.edu.vn
+
+--- [BƯỚC 3: THÊM THÀNH VIÊN VÀO CÂU LẠC BỘ] ---
+[✓] Đã thêm thành công 3 thành viên vào CLB Tin học DThU.
+
+--- [BƯỚC 4: TẠO SỰ KIỆN VỚI SỨC CHỨA GIỚI HẠN] ---
+[✓] Sự kiện: "Workshop Lập trình Hướng đối tượng với .NET 10"
+    Thời gian: 28/10/2026 21:02 | Sức chứa tối đa: 2 sinh viên
+
+--- [BƯỚC 5: SINH VIÊN ĐĂNG KÝ SỰ KIỆN] ---
+[✓] Đoàn Minh Trí đã đăng ký thành công (Trạng thái: Pending)
+[✓] Nguyễn Văn An đã đăng ký thành công (Trạng thái: Pending)
+[✓] Tổng số lượt đăng ký hiện tại: 2/2
+
+--- [BƯỚC 6: XÁC NHẬN PHIẾU & ĐIỂM DANH CHECK-IN] ---
+[✓] Phiếu 1 của Đoàn Minh Trí -> Confirmed
+[✓] Phiếu 2 của Nguyễn Văn An -> Confirmed
+[✓] Điểm danh thành công: Sinh viên Đoàn Minh Trí lúc 21/10/2026 14:02:53 qua CỔNG_HỘI_TRƯỜNG_A
+
+================================================================================
+                    BÁO CÁO TỔNG KẾT THAM DỰ SỰ KIỆN
+================================================================================
+Sự kiện: Workshop Lập trình Hướng đối tượng với .NET 10
+Đơn vị tổ chức: CLB Tin học DThU
+Sức chứa tối đa: 2 chỗ
+Số người đăng ký: 2 chỗ (Tỷ lệ lấp đầy: 100.0%)
+Danh sách chi tiết:
+  1. Đoàn Minh Trí (0024417136) - Trạng thái: Confirmed | ĐÃ ĐIỂM DANH lúc 14:02:53
+  2. Nguyễn Văn An (0024417101) - Trạng thái: Confirmed | CHƯA ĐIỂM DANH
+
+[✓] Admin đã tạm dừng quyền tạo sự kiện: CanCreateEvent = False
+
+--- [BƯỚC 8: KIỂM THỬ NGOẠI LỆ — VI PHẠM CÁC QUY TẮC NGHIỆP VỤ] ---
+  [Test 8.1] Sinh viên 3 cố đăng ký khi sự kiện đã đầy sức chứa (2/2): [THÀNH CÔNG] Bị chặn đúng: "Sự kiện "Workshop Lập trình Hướng đối tượng với .NET 10" đã đạt sức chứa tối đa (2 chỗ), không thể nhận thêm đăng ký."
+  [Test 8.2] Thêm lại sinh viên Đoàn Minh Trí vào CLB lần thứ 2: [THÀNH CÔNG] Bị chặn đúng: "Sinh viên Đoàn Minh Trí (0024417136) đã là thành viên của CLB."
+  [Test 8.3] Khởi tạo Member với email sai định dạng ("email_sai"): [THÀNH CÔNG] Bị chặn đúng: "Email không đúng định dạng. (Parameter 'email')"
+  [Test 8.4] Hủy phiếu đăng ký của SV 2 rồi thử xác nhận lại: [THÀNH CÔNG] Bị chặn đúng: "Không thể xác nhận phiếu ở trạng thái Cancelled."
+  [Test 8.5] Điểm danh phiếu đang ở trạng thái Cancelled: [THÀNH CÔNG] Bị chặn đúng: "Chỉ có phiếu đăng ký đã xác nhận (Confirmed) mới được phép điểm danh. Trạng thái hiện tại: Cancelled."
+
+[✓✓✓] TOÀN BỘ 8 BƯỚC NGHIỆP VỤ & 5/5 CA KIỂM THỬ NGOẠI LỆ ĐỀU VƯỢT QUA XUẤT SẮC!
+
+> python -m unittest discover -s .\EduHub_Python -p "test_*.py"
+........
+----------------------------------------------------------------------
+Ran 8 tests in 0.001s
+
+OK
+
+> python .\EduHub_Python\main.py
+========================================
+Bước 1: Tạo câu lạc bộ
+========================================
+CLB: Tech Club — Câu lạc bộ công nghệ: workshop, hackathon, chia sẻ kiến thức.
+
+========================================
+Bước 2: Thêm thành viên
+========================================
++ Nguyễn Văn An (DH24001) <an.nv@student.dthu.edu.vn>
++ Trần Thị Bình (DH24002) <binh.tt@student.dthu.edu.vn>
++ Lê Hoàng Cường (DH24003) <cuong.lh@student.dthu.edu.vn>
+Tổng thành viên: 3
+
+========================================
+Bước 3: Tạo sự kiện
+========================================
+Sự kiện: Workshop AI — 29/10/2026 11:02 — sức chứa 50
+
+========================================
+Bước 4: Đăng ký tham dự
+========================================
+Nguyễn Văn An (DH24001) đăng ký → Pending
+Trần Thị Bình (DH24002) đăng ký → Pending
+
+========================================
+Bước 5: Xác nhận đăng ký
+========================================
+Phiếu f11b1c29 → Confirmed
+Phiếu 6c870b48 → Confirmed
+
+========================================
+Bước 6: Check-in
+========================================
+Check-in 14:02:56 qua QrCode (phiếu f11b1c29)
+
+========================================
+Bước 7: Báo cáo tham dự
+========================================
+Số đăng ký: 2/50
+Số check-in: 1
+- Nguyễn Văn An: đã check-in
+- Trần Thị Bình: chưa check-in
+
+========================================
+Bước 8: Kiểm tra quy tắc nghiệp vụ
+========================================
+Đúng như mong đợi: Không thể xác nhận phiếu đang ở trạng thái Cancelled.

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EduHub.Ch01_BaiLam.csproj" />
+  <Project Path="Tests/EduHub.Ch01.Tests.csproj" />
+</Solution>
